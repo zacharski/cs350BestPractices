@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+ <h1>Welcome to the UMW R/C club</h1>
+        <p>Our current club president Chris Romo</p>
+        <p>The next build your own workshop is 20 January at 2pm where we will be building FliteTest's Easy Flyer. The cost is $15</p>
+
+        <p>Join us on the quad every Wednesday night at 6pm to fly quadcopters and R/C planes</p>
+
+    <h2> Today's events:</h2>
+    {% for ev in events %}
+    <p><b>{{ev.name}}</b>, {{ev.etime}}, {{ev.location}}<p>
+    {% endfor%}
+{% endblock %}
+

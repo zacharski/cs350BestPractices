@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+ <h1>Upcoming events</h1>
+ 	<table>
+ 	<tr><th>event</th><th>date</th><th>time</th><th>location</th><th>sponsor</th></tr>
+ 	{% for ev in events%}
+ 	<tr><td>{{ev.name}}</td><td>{{ev.day}}</td><td>{{ev.etime}}</td><td>{{ev.location}}</td><td>{{ev.contact}}</td></tr>
+ 	{% endfor  %}
+ 	</table>
+        
+{% endblock %}
+

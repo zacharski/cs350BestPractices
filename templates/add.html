@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+ <h1>Add an event</h1>
+        <form method="POST" action="/">
+        <table>
+        <tr><td>Name:</td><td><input type="text" size="40" name="name"></td></tr>
+        <tr><td>Date:</td><td><input type="date" name="day"></td></tr>
+        <tr><td>Time:</td><td><input type="time" name="usr_time"></td></tr>
+        <tr><td>Location:</td><td><input type="text" size="40" name="location"></td></tr>
+        <tr><td>Contact:</td><td><input type="text"  size="40" name="username"></td></tr>
+        <tr><td>&nbsp;</td><td><input type="submit" name="Submit"></td></tr>
+
+        </table>
+        </form>
+{% endblock %}
+

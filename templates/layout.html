@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>UMW RC Club</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <script type="text/javascript" src="static/js/modernizr-1.5.min.js"></script>
+</head>
+
+<body>
+  <div id="main">
+    <header>
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html">UMW<span class="logo_colour"> RC Club</span></a></h1>
+          <h2>The World of Flight</h2>
+        </div>
+      </div>
+      <nav>
+        <ul class="sf-menu" id="nav">
+          <li class="selected"><a href="/">Home</a></li>
+          <li><a href="/showall">Events</a></li>
+          <li><a href="/add">Add Event</a></li>
+          <li><a href="/join">Join</a></li>
+          <li><a href="#">Example Drop Down</a>
+            <ul>
+              <li><a href="#">Drop Down One</a></li>
+              <li><a href="#">Drop Down Two</a>
+                <ul>
+                  <li><a href="#">Sub Drop Down One</a></li>
+                  <li><a href="#">Sub Drop Down Two</a></li>
+                  <li><a href="#">Sub Drop Down Three</a></li>
+                  <li><a href="#">Sub Drop Down Four</a></li>
+                  <li><a href="#">Sub Drop Down Five</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down Three</a></li>
+              <li><a href="#">Drop Down Four</a></li>
+              <li><a href="#">Drop Down Five</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+  <div id="site_content">
+      <ul id="images">
+        <li><img src="static/images/1.jpg" width="600" height="300" alt="seascape_one" /></li>
+        <li><img src="static/images/2.jpg" width="600" height="300" alt="seascape_two" /></li>
+        <li><img src="static/images/3.jpg" width="600" height="300" alt="seascape_three" /></li>
+        <li><img src="static/images/4.jpg" width="600" height="300" alt="seascape_four" /></li>
+        <li><img src="static/images/5.jpg" width="600" height="300" alt="seascape_five" /></li>
+        <li><img src="static/images/6.jpg" width="600" height="300" alt="seascape_seascape" /></li>
+      </ul>
+       <div id="sidebar_container">
+        <div class="sidebar">
+          <h3>Latest News</h3>
+          <h4>Don't do this at home</h4>
+          <h5>January 1st, 2016</h5>
+          <p>Michael Hall, UMW Chief of Police reminds us not to fly copters or planes between the columns of buildings.<br /><a href="#">Read more</a></p>
+          <h4>Reminder</h4>
+          <h5>December 6th, 2015</h5>
+          <p>Access to our Educational Flight Range (EFR) is between 8am and 4pm ONLY!</p>
+        </div>
+      </div>
+      
+      <div class="content">
+      
+      {%block content %}{% endblock %}
+      
+      </div>
+    </div>
+    <footer>
+      <p>Copyright &copy; CSS3_seascape_two | <a href="http://www.css3templates.co.uk">design from css3templates.co.uk</a></p>
+    </footer>
+  </div>
+  <p>&nbsp;</p>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" src="static/js/jquery.js"></script>
+  <script type="text/javascript" src="static/js/jquery.easing-sooper.js"></script>
+  <script type="text/javascript" src="static/js/jquery.sooperfish.js"></script>
+  <script type="text/javascript" src="static/js/jquery.kwicks-1.5.1.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#images').kwicks({
+        max : 600,
+        spacing : 2
+      });
+      $('ul.sf-menu').sooperfish();
+    });
+  </script>
+</body>
+</html>
+
+      
+      
+      
+      
+      
+      
+      
+    
+    
+    
