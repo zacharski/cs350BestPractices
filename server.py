@@ -28,7 +28,7 @@ def mainJoin():
 
 @app.route('/join2', methods=['POST'])
 def submitJoin():
-	pg.add_member(request.form['name'], request.form['phone'], request.form['emailZ'], request.form['about'])
+	pg.add_member(request.form['name'], request.form['phone'], request.form['emailZ'], request.form['pw'], request.form['about'])
 	print "HERE"
 	return redirect('/')
 

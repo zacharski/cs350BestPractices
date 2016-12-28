@@ -1,5 +1,7 @@
 # Ron Mitsugo Zacharski
 #
+#   BP1 (best practices 1): Code that is database specific 
+#   should be in a separate file
 #
 from datetime import date
 import psycopg2
@@ -10,9 +12,10 @@ from lib.config import *
 def connectToPostgres():
   connectionString = 'dbname=%s user=%s password=%s host=%s' % (POSTGRES_DATABASE, POSTGRES_USER, POSTGRES_PASSWORD,POSTGRES_HOST)
   print connectionString
+  # BP2  Use try-except blocks
   try:
     return psycopg2.connect(connectionString)
-  except Exception as e:
+  except Exception as e:    # BP2 especially this part where you print the exception
   	print(type(e))
 	print(e)
 	print("Can't connect to database")
@@ -27,16 +30,17 @@ def execute_query(query, conn, select=True, args=None):
 	cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 	results = None
 	try: 
-		quer = cur.mogrify(query, args)
+		quer = cur.mogrify(query, args)   # BP6  never use Python concatenation
+		                                  # for database queries
 		cur.execute(quer)
 		if select:
 			results = cur.fetchall()
-		conn.commit()
+		conn.commit()   # BP5  commit and rollback frequently
 	except Exception as e:
 		conn.rollback()
 		print(type(e))
 		print(e)
-	cur.close()
+	cur.close()      # BP3 Dispose of old cursors as soon as possible
 	return results
 
 #
@@ -49,7 +53,7 @@ def new_event(name, day, etime, location,contact):
 	conn = connectToPostgres()
 	query_string = "INSERT INTO events (name, day, etime, location,contact) VALUES (%s, %s, %s, %s, %s)"
 	execute_query(query_string, conn, select=False,  args=(name, day, etime, location,contact))
-	conn.close()
+	conn.close()   # BP4 keep connection open as long as required
 
 def get_todays_events():
 	today = date.today()
@@ -69,9 +73,10 @@ def get_all_events():
 	return results
 
 
-def add_member(name, phone, email, about):
+def add_member(name, phone, email, password, about):
 	conn = connectToPostgres()
-	query_string = "INSERT INTO members (name, phone, email, about) VALUES (%s, %s, %s, %s)"
-	execute_query(query_string, conn, select=False,  args=(name, phone, email, about))
+	# BP7  Never store passwords in the clear
+	query_string = "INSERT INTO members (name, phone, email, password, about) VALUES (%s, %s, %s, crypt(%s, gen_salt('bf')), %s)"
+	execute_query(query_string, conn, select=False,  args=(name, phone, email, password, about))
 	conn.close()
 
