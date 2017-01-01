@@ -19,6 +19,9 @@ def connectToPostgres():
   	print(type(e))
 	print(e)
 	print("Can't connect to database")
+	return None
+	
+
 
 
 # generic execute statement
@@ -51,14 +54,19 @@ def execute_query(query, conn, select=True, args=None):
 
 def new_event(name, day, etime, location,contact):
 	conn = connectToPostgres()
+	if conn == None:
+		return None
 	query_string = "INSERT INTO events (name, day, etime, location,contact) VALUES (%s, %s, %s, %s, %s)"
 	execute_query(query_string, conn, select=False,  args=(name, day, etime, location,contact))
 	conn.close()   # BP4 keep connection open as long as required
+	return 0
 
 def get_todays_events():
 	today = date.today()
 	todayF = today.isoformat()
 	conn = connectToPostgres()
+	if conn == None:
+		return None
 	query_string = "SELECT * FROM events WHERE day = %s"
 	results = execute_query(query_string, conn,  args=(todayF,))
 	conn.close()
@@ -67,6 +75,8 @@ def get_todays_events():
 
 def get_all_events():
 	conn = connectToPostgres()
+	if conn == None:
+		return None
 	query_string = "SELECT * FROM events"
 	results = execute_query(query_string, conn)
 	conn.close()
@@ -75,7 +85,11 @@ def get_all_events():
 
 def add_member(name, phone, email, password, about):
 	conn = connectToPostgres()
+	if conn == None:
+		return None
+
 	# BP7  Never store passwords in the clear
+
 	query_string = "INSERT INTO members (name, phone, email, password, about) VALUES (%s, %s, %s, crypt(%s, gen_salt('bf')), %s)"
 	execute_query(query_string, conn, select=False,  args=(name, phone, email, password, about))
 	conn.close()

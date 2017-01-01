@@ -10,10 +10,13 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def mainIndex():
 	if request.method == 'POST' and 'day' in request.form:
-		pg.new_event(request.form['name'], request.form['day'], request.form['usr_time'], request.form['location'], request.form['username'])
-		
+		result= pg.new_event(request.form['name'], request.form['day'], request.form['usr_time'], request.form['location'], request.form['username'])
+		if result == None:
+			return render_template('whoops.html')
 	# get today's activities
 	results = pg.get_todays_events()
+	if results == None:
+		return render_template('whoops.html')
 
 	return render_template('index.html', events=results)
 
@@ -25,6 +28,10 @@ def mainAdd():
 @app.route('/join')
 def mainJoin():
 	return render_template('join.html')
+
+@app.route('/whoops')
+def mainWhoops():
+	return render_template('whoops.html')
 
 @app.route('/join2', methods=['POST'])
 def submitJoin():
